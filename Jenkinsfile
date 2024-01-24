@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("Verify tooling") {
             steps {
-                bash '''
+                sh '''
                     docker-compose exec php bash
                     docker info
                     docker version
@@ -12,17 +12,17 @@ pipeline {
             }
         }
 
-        // stage("Clear all running docker containers") {
-        //     steps {
-        //         script {
-        //             try {
-        //                 bash 'docker rm -f $(docker ps -a -q)'
-        //             } catch(Exception e) {
-        //                 echo ' No running container to clear up ...'
-        //             }
-        //         }
-        //     }
-        // }
+        stage("Clear all running docker containers") {
+            steps {
+                script {
+                    try {
+                        bash 'docker rm -f $(docker ps -a -q)'
+                    } catch(Exception e) {
+                        echo ' No running container to clear up ...'
+                    }
+                }
+            }
+        }
         stage("Start Docker") {
             steps {
                 bash 'make up'
