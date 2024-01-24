@@ -1,28 +1,28 @@
 pipeline {
     agent any
     stages {
-        // stage("Verify tooling") {
-        //     steps {
-        //         bash '''
-        //             docker-compose exec php bash
-        //             docker info
-        //             docker version
-        //             docker compose version
-        //         '''
-        //     }
-        // }
-
-        stage("Clear all running docker containers") {
+        stage("Verify tooling") {
             steps {
-                script {
-                    try {
-                        bash 'docker rm -f $(docker ps -a -q)'
-                    } catch(Exception e) {
-                        echo ' No running container to clear up ...'
-                    }
-                }
+                bash '''
+                    docker-compose exec php bash
+                    docker info
+                    docker version
+                    docker compose version
+                '''
             }
         }
+
+        // stage("Clear all running docker containers") {
+        //     steps {
+        //         script {
+        //             try {
+        //                 bash 'docker rm -f $(docker ps -a -q)'
+        //             } catch(Exception e) {
+        //                 echo ' No running container to clear up ...'
+        //             }
+        //         }
+        //     }
+        // }
         stage("Start Docker") {
             steps {
                 bash 'make up'
