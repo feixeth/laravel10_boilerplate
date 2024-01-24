@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("Verify tooling") {
             steps {
-                sh '''
+                bash '''
                     docker-compose exec php bash
                     docker info
                     docker version
@@ -23,24 +23,24 @@ pipeline {
                 }
             }
         }
-
+ba
         stage("Start Docker") {
             steps {
-                sh 'make up'
-                sh 'docker compose ps'
+                bash 'make up'
+                bash 'docker compose ps'
             }
         }
 
         stage("Run Composer Install") {
             steps {
-                sh 'docker-compose exec php bash'
-                sh '--rm composer install'
+                bash 'docker-compose exec php bash'
+                bash '--rm composer install'
             }
         }
 
         stage("Run Tests") {
             steps {
-                sh 'run artisan test'
+                bash 'run artisan test'
             }
         }
     }
