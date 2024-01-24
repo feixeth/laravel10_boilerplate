@@ -4,6 +4,7 @@ pipeline {
         stage("Verify tooling") {
             steps {
                 sh '''
+                    docker-compose exec php bash
                     docker info
                     docker version
                     docker compose version
