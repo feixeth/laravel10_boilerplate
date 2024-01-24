@@ -23,7 +23,6 @@ pipeline {
                 }
             }
         }
-ba
         stage("Start Docker") {
             steps {
                 bash 'make up'
