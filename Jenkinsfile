@@ -1,16 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage("Verify tooling") {
-            steps {
-                bash '''
-                    docker-compose exec php bash
-                    docker info
-                    docker version
-                    docker compose version
-                '''
-            }
-        }
+        // stage("Verify tooling") {
+        //     steps {
+        //         bash '''
+        //             docker-compose exec php bash
+        //             docker info
+        //             docker version
+        //             docker compose version
+        //         '''
+        //     }
+        // }
 
         stage("Clear all running docker containers") {
             steps {
